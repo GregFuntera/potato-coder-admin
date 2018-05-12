@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogViewComponent implements OnInit {
 
-  constructor() { }
+  tinyMCEAPI = 'p9slqf7osik2217tzddsw5zpf71wnz9zn1bqyrm0wppuyrnz';
+  blog: any = {};
+
+  constructor() {
+    this.blog.title = 'Sample Title';
+    this.blog.featured_photo = '';
+    this.blog.body = '';
+    this.blog.summary = '';
+  }
 
   ngOnInit() {
   }

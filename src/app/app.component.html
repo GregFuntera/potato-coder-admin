@@ -1,14 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar color="primary">
-  <span>My Application</span>
+<mat-toolbar class="main-header mat-elevation-z4" color="primary">
+  <a routerLink="/blog">
+    <h2>Potato Coder</h2>
+  </a>
 </mat-toolbar>
-<div class="m-8">
-  <router-outlet></router-outlet>
-</div>
-<!-- <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-
-</div> -->
+<router-outlet></router-outlet>
+<footer>
+  <mat-toolbar class="main-header mat-elevation-z4" color="warn">
+    <div>
+      <p>&copy; Greg Funtera</p>
+    </div>
+  </mat-toolbar>
+</footer>
 

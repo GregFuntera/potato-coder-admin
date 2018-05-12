@@ -1,3 +1,39 @@
-<p>
-  blog-view works!
-</p>
+<mat-toolbar color="primary">
+    <h4>Blog View</h4>
+</mat-toolbar>
+<div class="m-8">
+  <mat-card>
+    <form>
+      <!-- Featured Photo -->
+      <div class="image-container text-center">
+        <img src="{{ blog.featured_photo }}"
+             onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
+        <div>&nbsp;</div>
+        <input type="file" [hidden]="true" #imageInput/>
+        <a class="text-center" mat-raised-button color="warn" (click)="imageInput.click()">
+          <mat-icon>insert_photo</mat-icon>
+          <div class="upload">UPLOAD</div>
+        </a>
+      </div>
+      <!-- Title -->
+      <mat-form-field class="w-100 mt-10 font-20">
+        <input matInput
+               placeholder="Title"
+               [(ngModel)]="blog.title"
+               value="{{ blog.title }}"
+               name="title">
+      </mat-form-field>
+      <!-- Summary -->
+      <mat-form-field class="w-100 mt-10 font-20">
+          <textarea matInput
+                    placeholder="Summary"
+                    [(ngModel)]="blog.summary"
+                    value="blog.summary"
+                    name="summary"></textarea>
+      </mat-form-field>
+      <editor apiKey="tinyMCEAPI" [init]="{plugins: 'link'}"></editor>
+      <button class="mt-10" mat-raised-button color="primary">Submit</button>
+    </form>
+
+  </mat-card>
+</div>

@@ -1,10 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+
+
 body {
   margin: 0;
 }
 
+.main-header {
+  position: relative;
+}
+.main-header a {
+  text-decoration: none;
+  color: #fff;
+}
+.main-header a:hover {
+  color: #ccc;
+}
+
+/* Margins */
+.text-center {
+  text-align: center !important;
+}
+
 .m-8 {
-  margin: 8px;
+  margin: 8px !important;
+}
+
+/* Widths */
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.w-70 {
+  width: 70% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+/* Font Sizes */
+.font-20 {
+  font-size: 20px !important;
 }

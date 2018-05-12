@@ -26,6 +26,7 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
+    "@tinymce/tinymce-angular": "^2.0.0",
     "core-js": "^2.5.4",
     "enhanced-resolve": "^4.0.0",
     "express": "^4.16.3",
