@@ -31,7 +31,8 @@
                     value="blog.summary"
                     name="summary"></textarea>
       </mat-form-field>
-      <editor apiKey="tinyMCEAPI" [init]="{plugins: 'link'}"></editor>
+      <editor apiKey="tinyMCEAPI"
+              [init]="{plugins: ['link', 'codesample'], height: '350'}"></editor>
       <button class="mt-10" mat-raised-button color="primary">Submit</button>
     </form>
 
