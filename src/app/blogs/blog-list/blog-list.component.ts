@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-list',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router,
+  ) { }
 
   ngOnInit() {
+  }
+
+  onCreate() {
+    this.router.navigate(['/blog/blogview']);
   }
 
 }

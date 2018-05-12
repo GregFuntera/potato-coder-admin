@@ -10,7 +10,7 @@
              onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
         <div>&nbsp;</div>
         <input type="file" [hidden]="true" #imageInput/>
-        <a class="text-center" mat-raised-button color="warn" (click)="imageInput.click()">
+        <a class="text-center" mat-raised-button (click)="imageInput.click()">
           <mat-icon>insert_photo</mat-icon>
           <div class="upload">UPLOAD</div>
         </a>
@@ -34,6 +34,7 @@
       <editor apiKey="tinyMCEAPI"
               [init]="{plugins: ['link', 'codesample'], height: '350'}"></editor>
       <button class="mt-10" mat-raised-button color="primary">Submit</button>
+      <button class="mt-10 float-r" mat-raised-button color="warn">Delete</button>
     </form>
 
   </mat-card>

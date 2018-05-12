@@ -1,5 +1,11 @@
 <mat-toolbar color="primary">
     <h4>My Blogs</h4>
+    <span class="spacer"></span>
+    <button mat-icon-button
+            matTooltip="Create a new Blog!"
+            (click)="onCreate()">
+      <mat-icon>create</mat-icon>
+    </button>
 </mat-toolbar>
 
 <div class="m-8">
