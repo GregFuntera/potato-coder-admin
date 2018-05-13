@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BlogService } from '../../../services/blog/blog.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -8,11 +9,26 @@ import { Router } from '@angular/router';
 })
 export class BlogListComponent implements OnInit {
 
+  blogs: any[];
+  isLoading: boolean;
+
   constructor(
     public router: Router,
+    public blogSvc: BlogService,
   ) { }
 
   ngOnInit() {
+    this.getBlogs();
+  }
+
+  getBlogs() {
+    this.isLoading = true;
+    this.blogSvc.getBlogs().subscribe(
+      res => {
+        this.blogs = res;
+        this.isLoading = false;
+        console.log(this.blogs);
+    });
   }
 
   onCreate() {

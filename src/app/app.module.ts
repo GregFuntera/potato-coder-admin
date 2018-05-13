@@ -8,7 +8,10 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { HttpClientModule } from '@angular/common/http';
 
+
+import { BlogService } from '../services/blog/blog.service';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,11 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     AppRoutingModule,
     FormsModule,
     EditorModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    BlogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
