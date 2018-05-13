@@ -28,6 +28,7 @@ export class BlogListComponent implements OnInit {
         this.blogs = res;
         this.isLoading = false;
         console.log(this.blogs);
+        this.isLoading = false;
     });
   }
 

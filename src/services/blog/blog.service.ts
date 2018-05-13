@@ -18,4 +18,12 @@ export class BlogService {
   getBlogs(): Observable<any> {
     return this.http.get(this.apiURL + this.BASE_URL);
   }
+
+  getBlog(blogid: string) {
+    return this.http.get(this.apiURL + this.BASE_URL + '/' + blogid);
+  }
+
+  updateBlog(blogid: string, blog: any) {
+    return this.http.put(this.apiURL +  this.BASE_URL + '/' + blogid, blog);
+  }
 }

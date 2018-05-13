@@ -6,7 +6,7 @@ import { BlogViewComponent } from './blogs/blog-view/blog-view.component';
 const routes: Routes = [
   { path: '', redirectTo: '/blog', pathMatch: 'full' },
   { path: 'blog', component: BlogListComponent },
-  { path: 'blog/blogview', component: BlogViewComponent },
+  { path: 'blog/:blogid', component: BlogViewComponent },
 ];
 
 @NgModule({

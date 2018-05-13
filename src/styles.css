@@ -16,9 +16,14 @@ body {
   color: #ccc;
 }
 
+footer {
+  bottom: 0;
+  width: 100%;
+}
+
 .footer-container {
   width: 100%;
-  padding: 10px;
+  padding-top: 20px;
   background: #614646;
 }
 
@@ -27,6 +32,10 @@ body {
 }
 
 /* Margins */
+.m-auto {
+  margin: auto !important;
+}
+
 .m-0 {
   margin: 0 !important;
 }
@@ -69,4 +78,11 @@ body {
 
 .float-r {
   float: right !important;
+}
+
+/* Spinners */
+
+.spinner-container {
+  height: 800px;
+  margin-top: 20px;
 }
