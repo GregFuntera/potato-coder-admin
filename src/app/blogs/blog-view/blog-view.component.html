@@ -1,8 +1,11 @@
 <mat-toolbar color="primary">
-    <h4>Blog View</h4>
+    <button mat-icon-button routerLink="/blog">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  <h4>Blog View</h4>
 </mat-toolbar>
 <div class="m-8">
-  <mat-card>
+  <mat-card class="blog-form-card">
     <!-- Blog Loader -->
     <div class="spinner-container w-100 mat-typography" *ngIf="isLoading">
       <p class="text-center">
@@ -16,13 +19,16 @@
     <form *ngIf="!isLoading">
         <!-- Featured Photo -->
         <div class="image-container text-center">
-          <img src="{{ blog.featured_photo }}"
+          <!-- Image Loader   -->
+          <mat-spinner class="m-auto" *ngIf="isLoadingPhoto" ></mat-spinner>
+          <img *ngIf="!isLoadingPhoto"
+               src="{{ blog.featured_photo }}"
                onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
           <div>&nbsp;</div>
-          <input type="file" [hidden]="true" #imageInput/>
+          <input type="file" [hidden]="true" #imageInput (change)="onUploadFeaturedPhoto($event)">
           <a class="text-center" mat-raised-button (click)="imageInput.click()">
             <mat-icon>insert_photo</mat-icon>
-            <div class="upload">UPLOAD</div>
+            <div class="upload-btn">UPLOAD</div>
           </a>
         </div>
         <!-- Title -->
@@ -43,11 +49,15 @@
         </mat-form-field>
         <!-- Body -->
         <editor apiKey="tinyMCEAPI"
-                [init]="{plugins: ['link', 'codesample'], height: '350'}"
+                [init]="{
+                         plugins: ['link', 'codesample', 'media'],
+                         height: '350'
+                        }"
                 [(ngModel)]="blog.body"
                 name="body"></editor>
+        <!-- Buttons -->
         <button class="mt-10" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-        <button class="mt-10 float-r" mat-raised-button color="warn">Delete</button>
+        <button class="mt-10 float-r" mat-raised-button color="warn" (click)="onDelete()">Delete</button>
       </form>
       <!-- End: Blog Editor -->
   </mat-card>

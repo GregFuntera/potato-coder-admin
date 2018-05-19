@@ -5,7 +5,7 @@ import { BlogService } from '../../../services/blog/blog.service';
 @Component({
   selector: 'app-blog-list',
   templateUrl: './blog-list.component.html',
-  styleUrls: ['./blog-list.component.css']
+  styleUrls: ['./blog-list.component.scss']
 })
 export class BlogListComponent implements OnInit {
 
@@ -30,10 +30,6 @@ export class BlogListComponent implements OnInit {
         console.log(this.blogs);
         this.isLoading = false;
     });
-  }
-
-  onCreate() {
-    this.router.navigate(['/blog/blogview']);
   }
 
 }

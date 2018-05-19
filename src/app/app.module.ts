@@ -9,15 +9,21 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { BlogCreateComponent } from './blogs/blog-create/blog-create.component';
+import { SuccessSnackbarComponent } from './snackbars/success-snackbar/success-snackbar.component';
+import { SubmitDialogComponent } from './blogs/blog-view/shared/submit-dialog/submit-dialog.component';
+import { DeleteDialogComponent } from './blogs/blog-view/shared/delete-dialog/delete-dialog.component';
 
-
-import { BlogService } from '../services/blog/blog.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogListComponent,
-    BlogViewComponent
+    BlogViewComponent,
+    BlogCreateComponent,
+    SuccessSnackbarComponent,
+    SubmitDialogComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,8 +33,11 @@ import { BlogService } from '../services/blog/blog.service';
     EditorModule,
     HttpClientModule,
   ],
-  providers: [
-    BlogService
+  providers: [],
+  entryComponents: [
+    SuccessSnackbarComponent,
+    SubmitDialogComponent,
+    DeleteDialogComponent
   ],
   bootstrap: [AppComponent]
 })
