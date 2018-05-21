@@ -12,27 +12,70 @@
   <div class="blog-list-container">
     <!-- Blog Loader -->
     <div class="spinner-container w-100 mat-typography" *ngIf="isLoading">
-        <p class="text-center">
-          <mat-spinner class="m-auto"></mat-spinner>
-          Loading Blogs...
-        </p>
-      </div>
+      <p class="text-center">
+        <mat-spinner class="m-auto"></mat-spinner>
+        Loading Blogs...
+      </p>
+    </div>
     <!-- End: Blog Loader -->
 
-    <!-- Blog List -->
+    <!-- Tab Container -->
     <div *ngIf="!isLoading">
-      <mat-card class="card" *ngFor="let blog of blogs">
-        <img mat-card-image src="{{ blog.featured_photo }}" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <h2>{{ blog.title }}</h2>
-          <p>{{ blog.summary }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button routerLink="/blog/{{ blog._id }}">READ MORE</button>
-        </mat-card-actions>
-      </mat-card>
+      <mat-tab-group>
+        <!-- Published -->
+        <mat-tab label="Published">
+          <div class="blog-list-tab">
+            <!-- Blog List -->
+            <div class="container mt-10" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+              <div fxFlex="30%" *ngFor="let blog of publishedBlogs">
+                <mat-card class="card">
+                  <img mat-card-image src="{{ blog.featured_photo }}" alt="">
+                  <mat-card-content>
+                    <h2>{{ blog.title }}</h2>
+                    <p>{{ blog.summary }}</p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button routerLink="/blog/{{ blog._id }}">READ MORE</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+            <!-- End: Blog List -->
+          </div>
+
+        </mat-tab>
+        <!-- End: Published -->
+
+        <!-- Drafts -->
+        <mat-tab class="blog-list-tab" label="Drafts">
+          <div class="blog-list-tab" *ngIf="unPublishedBlogs">
+            <div class="empty-container" *ngIf="!unPublishedBlogs.length">
+              <h2>Drafts empty...</h2>
+            </div>
+
+            <!-- Blog List -->
+            <div class="container mt-10" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+              <div fxFlex="30%" *ngFor="let blog of unPublishedBlogs">
+                <mat-card class="card">
+                  <img mat-card-image src="{{ blog.featured_photo }}" alt=""
+                      onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'">
+                  <mat-card-content>
+                    <h2>{{ blog.title }}</h2>
+                    <p>{{ blog.summary }}</p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button routerLink="/blog/{{ blog._id }}">READ MORE</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+            <!-- End: Blog List -->
+          </div>
+        </mat-tab>
+        <!-- End: Drafts -->
+      </mat-tab-group>
     </div>
-    <!-- End: Blog List -->
+    <!-- End: Tab Container -->
   </div>
 </div>
 

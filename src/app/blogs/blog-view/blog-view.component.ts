@@ -4,8 +4,8 @@ import { BlogService } from '../../../services/blog/blog.service';
 import { UploadPhotoService } from '../../../services/upload-photo/upload-photo.service';
 import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { SubmitDialogComponent } from './shared/submit-dialog/submit-dialog.component';
-import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
+import { SubmitDialogComponent } from '../../dialogs/blog/submit-dialog/submit-dialog.component';
+import { DeleteDialogComponent } from '../../dialogs/blog/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-blog-view',
@@ -26,6 +26,7 @@ export class BlogViewComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
+    public router: Router,
     public blogSvc: BlogService,
     public uploadPhotoSvc: UploadPhotoService,
     public matDialog: MatDialog) {
@@ -74,6 +75,19 @@ export class BlogViewComponent implements OnInit {
         this.isLoadingPhoto = false;
     });
   }
+
+  onBack() {
+    this.autoSave();
+  }
+
+  autoSave() {
+    this.blogSvc.updateBlog(this.blog._id, this.blog).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/blog']);
+    });
+  }
+
 
   onSubmit() {
     this.openDialog(SubmitDialogComponent);

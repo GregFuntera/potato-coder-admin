@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
-import { SuccessSnackbarComponent } from '../../../../snackbars/success-snackbar/success-snackbar.component';
-import { BlogService } from '../../../../../services/blog/blog.service';
+import { SuccessSnackbarComponent } from '../../../snackbars/success-snackbar/success-snackbar.component';
+import { BlogService } from '../../../../services/blog/blog.service';
 
 @Component({
   selector: 'app-delete-dialog',

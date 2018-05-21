@@ -2,15 +2,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
-import { SuccessSnackbarComponent } from '../../../../snackbars/success-snackbar/success-snackbar.component';
-import { BlogService } from '../../../../../services/blog/blog.service';
+import { SuccessSnackbarComponent } from '../../../snackbars/success-snackbar/success-snackbar.component';
+import { BlogService } from '../../../../services/blog/blog.service';
 
 @Component({
-  selector: 'app-submit-dialog',
-  templateUrl: './submit-dialog.component.html',
-  styleUrls: ['./submit-dialog.component.scss']
+  selector: 'app-create-dialog',
+  templateUrl: './create-dialog.component.html',
+  styleUrls: ['./create-dialog.component.scss']
 })
-export class SubmitDialogComponent implements OnInit {
+export class CreateDialogComponent implements OnInit {
 
   blog: any;
 
@@ -18,18 +18,18 @@ export class SubmitDialogComponent implements OnInit {
     public blogSvc: BlogService,
     public matSnackbar: MatSnackBar,
     public router: Router,
-    public dialogRef: MatDialogRef<SubmitDialogComponent>,
+    public dialogRef: MatDialogRef<CreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.blog = this.data;
+    this.blog = data;
   }
 
   ngOnInit() {
-   //
   }
 
   onSave() {
-    this.blogSvc.updateBlog(this.blog._id, this.blog).subscribe(
+    this.blog.is_published = true;
+    this.blogSvc.createBlog(this.blog).subscribe(
       res => {
         console.log(res);
         if (res._id) {
@@ -55,4 +55,5 @@ export class SubmitDialogComponent implements OnInit {
   navigateTo(url: string): Promise<any> {
     return this.router.navigate(['/' + url]);
   }
+
 }

@@ -9,16 +9,19 @@
   <mat-card class="blog-form-card">
     <form>
       <!-- Featured Photo -->
-      <div class="image-container text-center">
-        <img  src="{{ blog.featured_photo }}"
-              onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
-        <div>&nbsp;</div>
-        <input type="file" [hidden]="true" #imageInput/>
-        <a class="text-center" mat-raised-button (click)="imageInput.click()">
-          <mat-icon>insert_photo</mat-icon>
-          <div class="upload-btn">UPLOAD</div>
-        </a>
-      </div>
+        <div class="image-container text-center">
+          <!-- Image Loader   -->
+          <mat-spinner class="m-auto" *ngIf="isLoadingPhoto" ></mat-spinner>
+          <img *ngIf="!isLoadingPhoto"
+               src="{{ blog.featured_photo }}"
+               onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
+          <div>&nbsp;</div>
+          <input type="file" [hidden]="true" #imageInput (change)="onUploadFeaturedPhoto($event)">
+          <a class="text-center" mat-raised-button (click)="imageInput.click()">
+            <mat-icon>insert_photo</mat-icon>
+            <div class="upload-btn">UPLOAD</div>
+          </a>
+        </div>
       <!-- Title -->
       <mat-form-field class="w-100 mt-10 font-20">
         <input matInput
@@ -41,7 +44,7 @@
               [(ngModel)]="blog.body"
               name="body"></editor>
       <button class="mt-10" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-      <button class="mt-10 float-r" mat-raised-button color="warn">Delete</button>
+      <button class="mt-10 float-r" mat-raised-button (click)="onSave()">Save</button>
     </form>
   </mat-card>
 </div>

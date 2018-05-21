@@ -21,8 +21,8 @@ export class BlogService {
   ) {}
 
 
-  getBlogs(): Observable<any> {
-    return this.http.get(this.apiURL + this.BASE_URL);
+  getBlogs(is_published: boolean): Observable<any> {
+    return this.http.get(this.apiURL + this.BASE_URL + '?is_published=' + is_published);
   }
 
   getBlog(blogid: string): Observable<any> {

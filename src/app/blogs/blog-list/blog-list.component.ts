@@ -9,7 +9,8 @@ import { BlogService } from '../../../services/blog/blog.service';
 })
 export class BlogListComponent implements OnInit {
 
-  blogs: any[];
+  publishedBlogs: any[];
+  unPublishedBlogs: any[];
   isLoading: boolean;
 
   constructor(
@@ -18,16 +19,30 @@ export class BlogListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getBlogs();
+    this.getPublishedBlogs();
+    this.getUnpublishedBlogs();
   }
 
-  getBlogs() {
+  getPublishedBlogs() {
     this.isLoading = true;
-    this.blogSvc.getBlogs().subscribe(
+
+    this.blogSvc.getBlogs(true).subscribe(
       res => {
-        this.blogs = res;
+        this.publishedBlogs = res;
         this.isLoading = false;
-        console.log(this.blogs);
+        console.log(this.publishedBlogs);
+        this.isLoading = false;
+    });
+  }
+
+  getUnpublishedBlogs() {
+    this.isLoading = true;
+
+    this.blogSvc.getBlogs(false).subscribe(
+      res => {
+        this.unPublishedBlogs = res;
+        this.isLoading = false;
+        console.log(this.unPublishedBlogs);
         this.isLoading = false;
     });
   }
