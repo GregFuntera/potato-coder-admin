@@ -49,10 +49,7 @@
         </mat-form-field>
         <!-- Body -->
         <editor apiKey="tinyMCEAPI"
-                [init]="{
-                         plugins: ['link', 'codesample', 'media'],
-                         height: '350'
-                        }"
+                [init]="{plugins: ['link', 'codesample', 'media', 'image'], height: '350'}"
                 [(ngModel)]="blog.body"
                 name="body"></editor>
         <!-- Buttons -->
