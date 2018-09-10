@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Youtube stats inputs
 - Added TODOs
 
+### Fixed 
+- Fixed youtube_stats object
+
 # PotatoCoderAdmin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.

@@ -118,7 +118,14 @@ export class BlogViewComponent implements OnInit {
   }
 
   mapYoutubeStas(videoID, statistics) {
-    let youtube_stats = {};
+    let youtube_stats = {
+      youtube_id: '',
+      comment_count: 0,
+      dislike_count: 0,
+      favorite_count: 0,
+      like_count: 0,
+      view_count: 0,
+    };
     youtube_stats.youtube_id = videoID;
     youtube_stats.comment_count = statistics.commentCount;
     youtube_stats.dislike_count = statistics.dislikeCount;

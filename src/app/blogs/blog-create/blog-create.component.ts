@@ -8,7 +8,7 @@ import { CreateDialogComponent } from '../../dialogs/blog/create-dialog/create-d
 import { MatSnackBar } from '@angular/material';
 import { SuccessSnackbarComponent } from '../../snackbars/success-snackbar/success-snackbar.component';
 import { UploadPhotoService } from '../../../services/upload-photo/upload-photo.service';
-import { GenericDialogComponent } from '../../dialogs/generic-dialog/generic-dialog.component';
+
 
 @Component({
   selector: 'app-blog-create',
@@ -104,7 +104,14 @@ export class BlogCreateComponent implements OnInit {
   }
 
   mapYoutubeStas(videoID, statistics) {
-    let youtube_stats = {};
+    let youtube_stats = {
+      youtube_id: '',
+      comment_count: 0,
+      dislike_count: 0,
+      favorite_count: 0,
+      like_count: 0,
+      view_count: 0,
+    };
     youtube_stats.youtube_id = videoID;
     youtube_stats.comment_count = statistics.commentCount;
     youtube_stats.dislike_count = statistics.dislikeCount;
