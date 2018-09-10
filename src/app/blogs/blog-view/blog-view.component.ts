@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../../services/blog/blog.service';
 import { UploadPhotoService } from '../../../services/upload-photo/upload-photo.service';
-import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { YotubeVideoStatsService } from '../../../services/youtube-video-stats/yotube-video-stats.service';
+
+import { MatDialog } from '@angular/material';
 import { SubmitDialogComponent } from '../../dialogs/blog/submit-dialog/submit-dialog.component';
 import { DeleteDialogComponent } from '../../dialogs/blog/delete-dialog/delete-dialog.component';
+
 
 @Component({
   selector: 'app-blog-view',
@@ -17,6 +19,8 @@ export class BlogViewComponent implements OnInit {
   tinyMCEAPI = 'p9slqf7osik2217tzddsw5zpf71wnz9zn1bqyrm0wppuyrnz';
   isLoading: boolean;
   isLoadingPhoto: boolean;
+  isLoadingFetchStats: boolean = false;
+
   blog: any = {
     title: '',
     body: '',
@@ -24,11 +28,23 @@ export class BlogViewComponent implements OnInit {
     featured_photo: '',
   };
 
+  youtube_stats: any = {
+    youtube_id: '',
+    comment_count: 0,
+    dislike_count: 0,
+    favorite_count: 0,
+    like_count: 0,
+    view_count: 0,
+  };
+
+  youtubeStatsError: string;
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
     public blogSvc: BlogService,
     public uploadPhotoSvc: UploadPhotoService,
+    public youtubeVideoStatSvc: YotubeVideoStatsService,
     public matDialog: MatDialog) {
     //
   }
@@ -45,6 +61,9 @@ export class BlogViewComponent implements OnInit {
       res => {
         console.log(res);
         this.blog = res;
+        if (!this.blog.youtube_stats) {
+          this.blog.youtube_stats = this.youtube_stats;
+        }
         this.isLoading = false;
     });
   }
@@ -74,6 +93,39 @@ export class BlogViewComponent implements OnInit {
         this.blog.featured_photo = res.data.link;
         this.isLoadingPhoto = false;
     });
+  }
+
+  getVideoStats(videoID) {
+    this.isLoadingFetchStats = true;
+    this.youtubeVideoStatSvc.getStatistics(videoID).subscribe(
+      res => {
+        console.log(res);
+        let items = res.items[0];
+        let isThereError = !items ? true : false;
+        if (items) {
+          let statistics = items.statistics;
+          this.blog.youtube_stats = this.mapYoutubeStas(videoID, statistics);
+        } else {
+          this.blog.youtube_stats = this.mapYoutubeStas('', this.youtube_stats);
+        }
+        this.getYoutubeStatsError(isThereError);
+        this.isLoadingFetchStats = false;
+    });
+  }
+
+  getYoutubeStatsError(error) {
+    this.youtubeStatsError = error === true ? 'Youtube video not found..' : '';
+  }
+
+  mapYoutubeStas(videoID, statistics) {
+    let youtube_stats = {};
+    youtube_stats.youtube_id = videoID;
+    youtube_stats.comment_count = statistics.commentCount;
+    youtube_stats.dislike_count = statistics.dislikeCount;
+    youtube_stats.favorite_count = statistics.favoriteCount;
+    youtube_stats.like_count = statistics.likeCount;
+    youtube_stats.view_count = statistics.viewCount;
+    return youtube_stats;
   }
 
   onBack() {

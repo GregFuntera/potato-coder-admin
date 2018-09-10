@@ -31,6 +31,48 @@
             <div class="upload-btn">UPLOAD</div>
           </a>
         </div>
+        <!-- Youtube Detail -->
+        <mat-form-field class="w-50 mt-10 font-20">
+          <input #videoID
+                 matInput
+                 placeholder="YouTube ID"
+                 value="{{ blog.youtube_stats.youtube_id }}"
+                 name="youtube_stats">
+        </mat-form-field>
+        <button class="ml-10"
+                mat-raised-button
+                color="primary"
+                (click)="getVideoStats(videoID.value)">Fetch Stats</button>
+        <!-- Youtube Stats -->
+        <mat-card *ngIf="blog.youtube_stats">
+          <mat-spinner *ngIf="isLoadingFetchStats else showList"></mat-spinner>
+          <ng-template #showList>
+          <mat-list>
+            <h2 *ngIf="youtubeStatsError">{{ youtubeStatsError }}</h2>
+            <h3 mat-subheader>Youtube Statistics:</h3>
+              <mat-list-item>
+                <h4 mat-line>Comments: <span>{{ blog.youtube_stats.comment_count || 0 }}</span></h4>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line>Dislikes: <span>{{ blog.youtube_stats.dislike_count  || 0 }}</span></h4>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line>Favorites: <span>{{ blog.youtube_stats.favorite_count  || 0 }}</span></h4>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line>Views: <span>{{ blog.youtube_stats.view_count  || 0 }}</span></h4>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line>Likes: <span>{{ blog.youtube_stats.like_count || 0 }}</span></h4>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </ng-template>
+        </mat-card>
         <!-- Title -->
         <mat-form-field class="w-100 mt-10 font-20">
           <input matInput
