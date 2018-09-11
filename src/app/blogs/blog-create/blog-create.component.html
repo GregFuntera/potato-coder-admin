@@ -12,9 +12,10 @@
       <div class="image-container text-center">
         <!-- Image Loader   -->
         <mat-spinner class="m-auto" *ngIf="isLoadingPhoto" ></mat-spinner>
-        <img *ngIf="!isLoadingPhoto"
-              src="{{ blog.featured_photo }}"
-              onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
+        <img class="w-100"
+            *ngIf="!isLoadingPhoto"
+            src="{{ blog.featured_photo }}"
+            onerror="this.src='../../../assets/imgs/blogs/image-not-available.png'" />
         <div>&nbsp;</div>
         <input type="file" [hidden]="true" #imageInput (change)="onUploadFeaturedPhoto($event)">
         <a class="text-center" mat-raised-button (click)="imageInput.click()">
