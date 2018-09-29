@@ -83,7 +83,7 @@
       </mat-form-field>
       <!-- Body -->
       <editor apiKey="tinyMCEAPI"
-              [init]="{plugins: ['link', 'codesample', 'image'], height: '350'}"
+              [init]="{plugins: ['link', 'codesample', 'image', 'media'], height: '350'}"
               [(ngModel)]="blog.body"
               name="body"></editor>
       <button class="mt-10" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>

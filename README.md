@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Released]
+## [1.0.1] - 2018-09-29 
+### Fixed 
+- Added Media plugin
+
 ## [1.0.0] - 2018-08-11 
 ### Fixed 
 - Fixed blog view and create photo size to width
